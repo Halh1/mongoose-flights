@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+<section id="show-page">
+
+    <div>Airline:</div>
+    <div><%= flight.airline %></div>
+    <div>Airport:</div>
+    <div><%= flight.airport %></div>
+    <div>Flight No:</div>
+    <div><%= flight.flightNo %></div>
+    <div>Departure Date & Time:</div>
+    <div><%= flight.depart %></div>
+    <div>Destination</div>
+    <div><%= flight.destinations %></div>
+</section>
+<!-----be able to add destination----->
+<label>Destination Airport:</label>
+        <select name="airport" id="">
+            <option value="AUS">AUS</option>
+            <option value="DEN">DEN</option>
+            <option value="DFW">DFW</option>
+            <option value="LAX">LAX</option>
+            <option value="SAN">SAN</option>
+        </select>
+<label>Arrival Date/Time:
+    <input type="datetime-local" value="arrival"> 
+    <button type="submit" value="Add arrival">Add Arrival</button>
+</label>
+<%- include('../partials/footer') %>
