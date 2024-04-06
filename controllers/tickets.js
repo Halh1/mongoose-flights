@@ -10,7 +10,6 @@ async function newTicket(req, res) {
     const flightId = await req.params.id;
     res.render('tickets/new', { title: 'Tickets', flightId})
 }
-
 async function create(req, res) {
     req.body.flight = req.params.id;
     const ticket = new Ticket(req.body);

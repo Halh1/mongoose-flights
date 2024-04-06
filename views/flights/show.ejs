@@ -10,22 +10,28 @@
     <div>Departure Date & Time:</div>
     <div><%= flight.depart %></div>
     <div>Destination</div>
-    <div><%= flight.destinations %></div>
+
+    <div><% flight.destinations.forEach(function(d) { %>
+        <div><%= d.airport %></div>
+        <div><%= d.arrival %></div>
+   <% }) %></div>
 </section>
 <!-----be able to add destination----->
-<label>Destination Airport:</label>
-        <select name="airport" id="">
-            <option value="AUS">AUS</option>
-            <option value="DEN">DEN</option>
-            <option value="DFW">DFW</option>
-            <option value="LAX">LAX</option>
-            <option value="SAN">SAN</option>
-        </select>
-<label>Arrival Date/Time:
-    <input type="datetime-local" value="arrival"> 
-    <button type="submit" value="Add arrival">Add Arrival</button>
-</label>
 
+<form action="/flights/<%= flight.id %>/destinations" method="POST">
+    <label for="airport">Destination Airport: </label>
+    <select name="airport" id="">
+        <option value="AUS">AUS</option>
+        <option value="DEN">DEN</option>
+        <option value="DFW">DFW</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+    </select>
+    <label>Arrival Date/Time:
+        <input name="arrival" type="datetime-local" value="arrival"> 
+        <button type="submit" value="Add arrival">Add Arrival</button>
+    </label>
+</form>
 <!--------Adding Tickets below-->
 <button type="submit"><a href="/flights/<%= flight._id %>/tickets/new"> New Ticket </a></button>
 

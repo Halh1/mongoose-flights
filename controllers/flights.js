@@ -4,8 +4,9 @@ module.exports = {
     index,
     new: newFlight,
     create,
-    show
-}
+    show,
+    addDestination
+};
 
 
 async function index(req, res) {
@@ -14,7 +15,7 @@ async function index(req, res) {
 } 
 
 async function show(req, res) {
-    const flight = await Flight.findById(req.params.id);
+    const flight = await Flight.findById(req.params.id).populate('destinations');
     const ticket = await Ticket.find({ flight: flight._id }); 
     //console.log(tickets);
     res.render('flights/show', { title: 'Flight Detail', flight, ticket });
@@ -36,3 +37,10 @@ async function create(req, res) {
         res.render('flights/new', { errorMsg: err.message });
     }
 } 
+
+async function addDestination(req, res) {
+    const flight = await Flight.findById(req.params.id);
+    flight.destinations.push(req.body);
+    await flight.save();
+    res.redirect(`/flights/${flight._id}`);
+}
