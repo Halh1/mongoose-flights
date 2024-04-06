@@ -13,8 +13,7 @@ const ticketSchema = new Schema ({
     flight: {
         type: Schema.Types.ObjectId,
         ref: 'Flight'
-    },
-    timestamp: true
+    }
 });
 
 module.exports = mongoose.model('Ticket', ticketSchema);
